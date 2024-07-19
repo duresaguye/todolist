@@ -1,0 +1,96 @@
+/* Container styling */
+body {
+  background-color: #1a202c; /* Tailwind's gray-900 */
+  color: white; /* Ensure the text color is white for readability */
+  font-family: Arial, sans-serif; /* Set a default font-family */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+.container {
+  max-width: 40rem;
+  margin: 2.5rem auto;
+  padding: 1.5rem;
+  background-color: #2d3748;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Title styling */
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+/* Input container styling */
+.input-container {
+  margin-bottom: 1rem;
+}
+
+/* Input styling */
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background-color: #4a5568;
+  color: white;
+  border: 1px solid #718096;
+  border-radius: 0.375rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  border-color: #a0aec0;
+}
+
+/* Button styling */
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #48bb78;
+  color: white;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #38a169;
+}
+
+/* Todo item styling */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background-color: #4a5568;
+  color: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Todo title styling */
+.todo-title {
+  font-size: 1.125rem;
+}
+
+/* Delete button styling */
+.delete-button {
+  padding: 0.5rem;
+  background-color: #f56565;
+  color: white;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #e53e3e;
+}
