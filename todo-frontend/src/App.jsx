@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-import './App.css'; 
+import './App.css';
 
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [editMode, setEditMode] = useState(false);
+  const [editId, setEditId] = useState(null);
 
   useEffect(() => {
     fetchTodos();
@@ -18,10 +19,21 @@ const App = () => {
   };
 
   const addTodo = async () => {
-    const response = await axios.post('http://127.0.0.1:8000/api/todos/', { title, description });
-    setTodos([...todos, response.data]);
+    if (editMode) {
+      await updateTodo(editId);
+    } else {
+      const response = await axios.post('http://127.0.0.1:8000/api/todos/', { title, description });
+      setTodos([...todos, response.data]);
+    }
     setTitle('');
     setDescription('');
+    setEditMode(false);
+    setEditId(null);
+  };
+
+  const updateTodo = async (id) => {
+    const response = await axios.put(`http://127.0.0.1:8000/api/todos/${id}/`, { title, description });
+    setTodos(todos.map(todo => (todo.id === id ? response.data : todo)));
   };
 
   const deleteTodo = async (id) => {
@@ -29,11 +41,16 @@ const App = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const startEdit = (todo) => {
+    setTitle(todo.title);
+    setDescription(todo.description);
+    setEditMode(true);
+    setEditId(todo.id);
+  };
+
   return (
     <div className="container">
-      
       <h1 className="title">Todo List</h1>
-     
       <div className="input-container">
         <input
           type="text"
@@ -50,7 +67,7 @@ const App = () => {
           className="input"
         />
         <button onClick={addTodo} className="button">
-          Add Todo
+          {editMode ? 'Update Todo' : 'Add Todo'}
         </button>
       </div>
       <ul>
@@ -59,9 +76,15 @@ const App = () => {
             <div>
               <strong className="todo-title">{todo.title}</strong> - {todo.description}
             </div>
-            <button onClick={() => deleteTodo(todo.id)} className="delete-button">
-              Delete
-            </button>
+            <div>
+              <button onClick={() => startEdit(todo)} className="edit-button">
+                Edit
+              </button>
+               <span>&nbsp;&nbsp;</span>
+              <button onClick={() => deleteTodo(todo.id)} className="delete-button">
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>

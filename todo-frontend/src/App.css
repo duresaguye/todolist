@@ -90,7 +90,15 @@ body {
   cursor: pointer;
   transition: background-color 0.2s;
 }
+.edit-button {
+  padding: 0.5rem;
+  background-color: #2d22ce;
+  color: white;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
 
-.delete-button:hover {
-  background-color: #e53e3e;
+.edit-button:hover {
+  background-color: hsl(232, 76%, 57%);
 }
